@@ -3,7 +3,11 @@ AV.init({
   appKey: 'GKTQvmBq7NQ4dD5oxVnGXAt0',
 })
 
-var Todo = AV.Object.extend('Todo')
+var Todo = AV.Object.extend('Todo');
+// var todo = AV.Object.createWithoutData('Todo', '5da709f2f884af00670c19ed');
+// todo.set('names', '王洪波,彭运新,黄双全,严美强,刘雪芬,陈柏霖,张岩,徐华,雷爱芳,梁秋子,黄世政,陈楠,沈雁,邵铁健,曹亚军,彭树森,柯薇薇,赵恺,解威威,钟胜金,王美媛,李军,张海红,王婕,修远馨,袁伟文,袁钰婕,张文准,张铭,李娟,李洪波,张洁,潘红杰,陈柳汀,陈志君,张惠娟,黄建萍,唐丽,杨志华,黄仁静,蒋鑫,李毓麟,李毓麟,周婧宜');
+// todo.save();
+
 // 构建对象
 // var todo = new Todo();
 
