@@ -1,9 +1,24 @@
 AV.init({
-  appId: 'ozewwcwsyq92g2hommuxqrqzg6847wgl8dtrac6suxzko333',
-  appKey: 'ni0kwg7h8hwtz6a7dw9ipr7ayk989zo5y8t0sn5gjiel6uav',
+  appId: 'JTAfFTNcRlQCpg8HFE1krlu9-gzGzoHsz',
+  appKey: 'GKTQvmBq7NQ4dD5oxVnGXAt0',
 })
 
 var Todo = AV.Object.extend('Todo')
+// 构建对象
+// var todo = new Todo();
+
+// // 为属性赋值
+// todo.set('title', '马拉松报名');
+// todo.set('priority', 2);
+
+// // 将对象保存到云端
+// todo.save().then(function (todo) {
+//   // 成功保存之后，执行其他逻辑
+//   console.log('保存成功。objectId：' + todo.id);
+// }, function (error) {
+//   // 异常处理
+// });
+
 
 // visibility filters
 var filters = {
@@ -131,10 +146,18 @@ var app = new Vue({
     },
 
     login: function() {
-      AV.User.logIn(this.username, this.password).then(function(user) {
-        this.user = user.toJSON()
-        this.username = this.password = ''
-      }.bind(this)).catch(alert)
+      // AV.User.logIn(this.username, this.password).then(function(user) {
+      //   this.user = user.toJSON()
+      //   this.username = this.password = ''
+      // }.bind(this)).catch(alert)
+      console.log("this.username==="+this.username);
+      if(confirm('确定要提交么？所有之前抽奖的名单将被替换！')){
+          // localStorage.clear();
+          var todo = AV.Object.createWithoutData('Todo', '5da709f2f884af00670c19ed');
+          todo.set('names', this.username);
+          todo.save();
+          location.reload(true);
+      }
     },
     
     signup: function() {

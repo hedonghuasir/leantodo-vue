@@ -31,16 +31,17 @@
   </head>
   <body>
     <section class="todoapp">
-      <h1>LeanTodo</h1>
+      <h1>输入人员名称</h1>
       <form action="#" id="login" v-on:submit.prevent="login" v-if="!user" v-cloak>
         <input v-model="username" autofocus required class="new-todo" placeholder="Username">
-        <input type="password" v-model="password" required class="new-todo" placeholder="Password">
         <div class="control">
-          <input type="submit" value="Login" class="new-todo" id="login-button">
-          <input type="button" @click="signup" value="Signup" class="new-todo">
+          <input type="submit" value="提交" class="new-todo" id="login-button">
+          <!-- <input type="button" @click="signup" value="Signup" class="new-todo"> -->
         </div>
       </form>
-      <template v-if="user" v-cloak>
+    <p>点击"提交"按钮，抽奖备选名单将改变,注意多个名称,分割</p>
+    <p id="changeNames">当前中奖名单有 </p>
+     <!--  <template v-if="user" v-cloak>
         <header class="header">
           <input class="new-todo"
             v-if="user"
@@ -69,8 +70,8 @@
                 @keyup.esc="cancelEdit(todo)">
             </li>
           </ul>
-        </section>
-        <footer class="footer" v-show="todos.length" v-cloak>
+        </section> -->
+       <!--  <footer class="footer" v-show="todos.length" v-cloak>
           <span class="todo-count">
             <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
           </span>
@@ -86,15 +87,28 @@
         <p class="info userinfo">
           Logged in as {{user.username}} (<a @click='logout'>Logout</a>)
         </p>
-      </template>
+      </template>-->
     </section>
-    <footer class="info">
+<!--     <footer class="info">
       <p>Double-click to edit a todo</p>
       <p>fork from <a href="https://vuejs.org/v2/examples/todomvc.html">Vue.js TodoMVC</a> / Powered by <a href="https://leancloud.cn">LeanCloud</a></p>
-    </footer>
-    <a href="https://github.com/leancloud/leantodo-vue"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+    </footer> -->
+
     <script src="https://unpkg.com/leancloud-storage@^3.0.0-beta.3/dist/av-live-query-min.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="app.js"></script>
+    <script type="text/javascript">
+    (function(){
+        var query = new AV.Query('Todo');
+        query.get('5da709f2f884af00670c19ed').then(function (todo) {
+          var names  = todo.get('names');
+          console.log("this.username==="+names);
+              var x = document.getElementById("changeNames");
+              console.dir(x);
+              x.innerHTML = "当前中奖名单有 "+names;//改变内容
+              x.style.color="#ff0000"; //改变样式
+        });
+    })();
+</script>
   </body>
 </html>
