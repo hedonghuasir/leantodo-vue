@@ -36,11 +36,13 @@
         <input v-model="username" autofocus required class="new-todo" placeholder="Username">
         <div class="control">
           <input type="submit" value="提交" class="new-todo" id="login-button">
-          <!-- <input type="button" @click="signup" value="Signup" class="new-todo"> -->
+          <input type="button" @click="reset" value="重置" class="new-todo">
         </div>
       </form>
     <p>点击"提交"按钮，抽奖备选名单将改变,注意多个名称,分割</p>
-    <p id="changeNames">当前中奖名单有 </p>
+    <p>点击"重置"按钮，之前抽奖名单都将重置</p>
+    <p id="changeNames">当前中奖备选名单有 </p>
+    <p id="lotteryNames">已经中奖名单有 </p>
      <!--  <template v-if="user" v-cloak>
         <header class="header">
           <input class="new-todo"
@@ -101,12 +103,19 @@
     (function(){
         var query = new AV.Query('Todo');
         query.get('5da709f2f884af00670c19ed').then(function (todo) {
-          var names  = todo.get('names');
-          console.log("this.username==="+names);
-              var x = document.getElementById("changeNames");
-              console.dir(x);
-              x.innerHTML = "当前中奖名单有 "+names;//改变内容
-              x.style.color="#ff0000"; //改变样式
+            var names  = todo.get('names');
+            console.log("this.username==="+names);
+            var x = document.getElementById("changeNames");
+            console.dir(x);
+            x.innerHTML = "当前中奖备选名单有: "+names;//改变内容
+            x.style.color="#ff0000"; //改变样式
+
+            var names_  = todo.get('lottery_names');
+            console.log("this.username==="+names_);
+            var x = document.getElementById("lotteryNames");
+            console.dir(x);
+            x.innerHTML = "已经中奖名单有: "+names_;//改变内容
+            x.style.color="#ff0000"; //改变样式
         });
     })();
 </script>
