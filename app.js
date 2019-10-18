@@ -172,8 +172,8 @@ var app = new Vue({
       console.log("this.username==="+this.username);
       if(confirm('确定要重置么？所有之前抽奖的名单将被删除！')){
           var todo = AV.Object.createWithoutData('Todo', '5da709f2f884af00670c19ed');
-          let lottery_names = '';
-          todo.set('lottery_names',lottery_names);
+          let names = '';
+          todo.set('lottery_names',names);
           todo.save();
           location.reload(true);
       }
